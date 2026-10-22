@@ -1,0 +1,13 @@
+build/
+.gradle/
+run/
+run-data/
+out/
+*.iml
+.idea/
+KNOWN_ISSUES.md
+PORTING_CHECKLIST.md
+TEST_RESULTS.md
+tools
+
+/docs

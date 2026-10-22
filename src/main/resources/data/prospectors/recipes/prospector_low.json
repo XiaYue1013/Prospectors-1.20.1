@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    " sg",
+    " bs",
+    "b  "
+  ],
+  "key": {
+    "b": {
+      "tag": "minecraft:logs"
+    },
+    "s": {
+      "tag": "minecraft:coals"
+    },
+    "g": {
+      "tag": "forge:glass/colorless"
+    }
+  },
+  "result": {
+    "item": "prospectors:prospector_low"
+  }
+}

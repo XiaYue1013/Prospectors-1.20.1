@@ -1,0 +1,10 @@
+{
+  "itemGroup.prospectors": "Prospectors",
+  "prospector.none": "Ничего интересного в пределах  ",
+  "prospector.found": "Найдено: ",
+  "item.prospectors.prospector_lowest": "Слабый прут лозоискателя",
+  "item.prospectors.prospector_low": "Прочный прут лозоискателя",
+  "item.prospectors.prospector_med": "Рудоискатель",
+  "item.prospectors.prospector_high": "Продвинутый рудоискатель",
+  "item.prospectors.prospector_best": "Совершенный рудоискатель"
+}

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    " sg",
+    " bs",
+    "b  "
+  ],
+  "key": {
+    "b": {
+      "tag": "forge:cobblestone/normal"
+    },
+    "s": {
+      "tag": "forge:rods/wooden"
+    },
+    "g": {
+      "tag": "minecraft:logs"
+    }
+  },
+  "result": {
+    "item": "prospectors:prospector_lowest"
+  }
+}

@@ -1,0 +1,27 @@
+modLoader="javafml"
+loaderVersion="${loader_version_range}"
+license="${mod_license}"
+issueTrackerURL="https://github.com/Lothrazar/Prospectors/issues"
+
+[[mods]]
+modId="${mod_id}"
+version="${mod_version}"
+displayName="${mod_name}"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/ore-prospectors"
+credits="Original mod by Lothrazar (Sam Bassett): https://github.com/Lothrazar/Prospectors . Russian translation by TimeConqueror. This is an unofficial Forge 1.20.1 port of Ore Prospectors 1.0.2 (Minecraft 1.12), not made or endorsed by the original author; do not report problems with this port to the original author. MIT License."
+authors="${mod_authors}"
+description='''${mod_description}'''
+
+[[dependencies.${mod_id}]]
+    modId="forge"
+    mandatory=true
+    versionRange="${forge_version_range}"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="${minecraft_version_range}"
+    ordering="NONE"
+    side="BOTH"

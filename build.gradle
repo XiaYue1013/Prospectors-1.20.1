@@ -1,0 +1,120 @@
+plugins {
+    id 'eclipse'
+    id 'idea'
+    id 'net.minecraftforge.gradle' version '[6.0.24,6.2)'
+}
+
+group = mod_group_id
+version = "${minecraft_version}-${mod_version}"
+
+base {
+    archivesName = 'prospectors'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+minecraft {
+    mappings channel: 'official', version: minecraft_version
+
+    copyIdeResources = true
+
+    runs {
+        configureEach {
+            workingDirectory project.file('run')
+
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+
+            mods {
+                "${mod_id}" {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        client {
+            property 'forge.enabledGameTestNamespaces', mod_id
+            // -PvisualTest=true: builds a test scene, right clicks with the prospectors, takes screenshots into run/screenshots and quits (dev only)
+            property 'prospectors.visualTest', project.findProperty('visualTest') ?: 'false'
+            if (project.findProperty('visualTest') == 'true')
+                args '--width', '1280', '--height', '720'
+            // -PconnectTest=host:port: joins that server and right clicks there, see dev/ConnectTestHarness (dev only)
+            property 'prospectors.connectTest', project.findProperty('connectTest') ?: ''
+        }
+
+        server {
+            property 'forge.enabledGameTestNamespaces', mod_id
+            // -PserverSmokeTest=true: the server checks what the mod loaded and stops itself after 100 ticks (dev only)
+            property 'prospectors.serverSmokeTest', project.findProperty('serverSmokeTest') ?: 'false'
+            args '--nogui'
+        }
+
+        gameTestServer {
+            property 'forge.enabledGameTestNamespaces', mod_id
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+}
+
+tasks.named('processResources', ProcessResources).configure {
+    var replaceProperties = [
+            minecraft_version      : minecraft_version,
+            minecraft_version_range: minecraft_version_range,
+            forge_version          : forge_version,
+            forge_version_range    : forge_version_range,
+            loader_version_range   : loader_version_range,
+            mod_id                 : mod_id,
+            mod_name               : mod_name,
+            mod_license            : mod_license,
+            mod_version            : mod_version,
+            mod_authors            : mod_authors,
+            mod_description        : mod_description
+    ]
+    inputs.properties replaceProperties
+
+    filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
+        expand replaceProperties + [project: project]
+    }
+}
+
+tasks.named('jar', Jar).configure {
+    // Development test tools only (GameTests, the stand-in "other mod" ore, client/server test harnesses)
+    exclude 'com/lothrazar/prospectors/dev/**'
+    exclude 'com/lothrazar/prospectors/gametest/**'
+    exclude 'data/prospectors/structures/**'
+    exclude 'data/forge/**'
+    exclude 'assets/prospectorstest/**'
+    from('LICENSE') {
+        rename { "LICENSE_${mod_id}" }
+    }
+    from('NOTICE.md') {
+        rename { "NOTICE_${mod_id}.md" }
+    }
+    manifest {
+        attributes([
+                'Specification-Title'     : mod_id,
+                'Specification-Vendor'    : 'Lothrazar',
+                'Specification-Version'   : '1',
+                'Implementation-Title'    : project.name,
+                'Implementation-Version'  : project.jar.archiveVersion,
+                'Implementation-Vendor'   : 'Unofficial Forge 1.20.1 port of Ore Prospectors by Lothrazar',
+                'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
+    }
+    finalizedBy 'reobfJar'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}

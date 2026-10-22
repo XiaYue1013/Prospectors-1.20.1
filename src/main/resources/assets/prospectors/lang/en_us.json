@@ -1,0 +1,10 @@
+{
+  "itemGroup.prospectors": "Prospectors",
+  "prospector.none": "Nothing of interest up to ",
+  "prospector.found": "Found: ",
+  "item.prospectors.prospector_lowest": "Weak Dowsing Rod",
+  "item.prospectors.prospector_low": "Tough Dowsing Rod",
+  "item.prospectors.prospector_med": "Ore Prospector",
+  "item.prospectors.prospector_high": "Advanced Prospector",
+  "item.prospectors.prospector_best": "Ultimate Prospector"
+}

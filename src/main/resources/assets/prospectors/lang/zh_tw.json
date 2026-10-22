@@ -1,0 +1,10 @@
+{
+  "itemGroup.prospectors": "探礦工具",
+  "prospector.none": "搜尋範圍內沒有任何發現，範圍：",
+  "prospector.found": "發現：",
+  "item.prospectors.prospector_lowest": "脆弱的探礦杖",
+  "item.prospectors.prospector_low": "堅韌的探礦杖",
+  "item.prospectors.prospector_med": "礦物探測器",
+  "item.prospectors.prospector_high": "進階礦物探測器",
+  "item.prospectors.prospector_best": "終極礦物探測器"
+}
